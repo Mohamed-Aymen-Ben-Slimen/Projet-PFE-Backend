@@ -1,11 +1,11 @@
-import { Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { User } from '../schemas/user.schema';
 import { Document } from 'mongoose';
 import { Department } from '../schemas/enums/department.enum';
 
 export type ProfessorDocument = Professor & Document;
 
-
+@Schema()
 export class Professor extends User {
   @Prop({ required: true })
   professorId: string;

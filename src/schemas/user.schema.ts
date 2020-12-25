@@ -19,7 +19,7 @@ import { Document } from 'mongoose';
 //   },
 //   { collection: 'users', discriminatorKey: 'role' },
 // );
-
+@Schema()
 export class User {
   @Prop({ required: true })
   firstname: string;

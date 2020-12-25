@@ -1,14 +1,14 @@
 
 export class CreateProfessorDto {
-  firstname: string;
-  lastname: string;
-  email: string;
-  password: string;
-  CIN: number;
-  nationality: string;
-  phoneNumber: string;
-  role: string;
-  professorId: string;
-  department: string;
-  title: string;
+  readonly firstname: string;
+  readonly lastname: string;
+  readonly email: string;
+  readonly password: string;
+  readonly CIN: number;
+  readonly nationality: string;
+  readonly phoneNumber: string;
+  readonly role: string;
+  readonly professorId: string;
+  readonly department: string;
+  readonly title: string;
 }

@@ -31,6 +31,17 @@ export class ProfessorsController {
     return newProf;
   }
 
+  @Post('/all')
+  async postProfessors(
+    @Body() newProfs: CreateProfessorDto[]
+  ) {
+    console.log("Create professors excel");
+    newProfs.map(async (item) => {
+      await this.professorService.create(item);
+    });
+    return newProfs;
+  }
+
   @Delete(':id')
    async deleteProfessor(
     @Param('id') id: string

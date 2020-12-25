@@ -1,45 +1,51 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { CreateProfessorDto } from './DTO-Professor/create-professor.dto';
 import { UpdateProfessorDto } from './DTO-Professor/update-professor.dto';
+import { ProfessorsService } from './professors.service';
+import { Professor } from './professor.model';
 
 @Controller('professors')
 export class ProfessorsController {
+  constructor(private readonly professorService: ProfessorsService) {}
+
   @Get('')
-  getProfessors(): string {
-    console.log('hh');
-    return("hh");
+  async getProfessors(): Promise<Professor[]> {
+    console.log('Get Professors');
+    return this.professorService.findAll();
   }
 
   @Get('/:id')
-  getProfessorById(
+  async getProfessorById(
     @Param('id') id: string,
-  ) {
-    console.log("read prof");
-    return("read prof");
+  ): Promise<Professor> {
+    console.log("Get One Prof");
+    return this.professorService.findById(id);
   }
 
   @Post('')
-  postProfessor(
+  async postProfessor(
     @Body() newProf: CreateProfessorDto
   ) {
-    console.log("create prof");
-    return ("create prof");
+    console.log("Create a professor");
+    await this.professorService.create(newProf);
+    return newProf;
   }
 
   @Delete(':id')
-  deleteProfessor(
+   async deleteProfessor(
     @Param('id') id: string
   ) {
-    console.log("delete prof");
-    return ("delete prof");
+    console.log("Delete a Professor");
+    return await this.professorService.delete(id);
   }
 
   @Put(':id')
-  updateProfessor(
+  async updateProfessor(
     @Body() updatedProf : UpdateProfessorDto,
     @Param('id') id: string
   ) {
     console.log("update prof");
-    return ("update prof");
+    await this.professorService.update(id, updatedProf);
+    return updatedProf;
   }
 }

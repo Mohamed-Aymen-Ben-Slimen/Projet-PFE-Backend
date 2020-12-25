@@ -21,7 +21,7 @@ import { Document } from 'mongoose';
 // );
 
 export class User {
-  @Prop()
+  @Prop({ required: true })
   firstname: string;
 
   @Prop()
@@ -30,10 +30,23 @@ export class User {
   @Prop()
   username: string;
 
-  @Prop()
+  @Prop({ required: true })
   email: string;
 
-  @Prop()
+  @Prop({ required: true })
   password: string;
 
+  @Prop({ required: true })
+  CIN: number;
+
+  @Prop()
+  nationality: string;
+
+  @Prop()
+  phoneNumber: string;
+
+  @Prop({ required: true, enum: ['ADMIN', 'STUDENT', 'PROFESSOR'] })
+  role: string;
 }
+
+export const UserSchema = SchemaFactory.createForClass(User);

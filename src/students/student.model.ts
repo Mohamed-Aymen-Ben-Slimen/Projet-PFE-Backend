@@ -1,42 +1,34 @@
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import * as extendSchema from 'mongoose-extend-schema';
-import { UserSchema } from '../schemas/user.schema';
+import { User } from '../schemas/user.schema';
 
-export const StudentSchema = extendSchema(UserSchema, {
-  studentNumber: { type: String, required: true },
-  major: {
-    type: String,
+export type StudentDocument = Student & Document;
+
+@Schema()
+export class Student extends User {
+  @Prop({ required: true })
+  studentNumber: string;
+  @Prop({
     required: true,
     enum: ['GL', 'RT', 'MPI', 'IIA', 'IMI', 'CH', 'BIO', 'CBA'],
-  },
-  level: { type: Number, required: true, min: 0, max: 5 },
-  group: Number,
-  diploma: { type: String, required: true, enum: ['engineer', 'technician'] },
-  birthDate: Date,
-  birthPlace: String,
-  photo: Buffer,
-  CV: Buffer,
-  active: Boolean,
-});
-
-export interface Student extends Document {
-  firstName: string;
-  lastName: string;
-  username: number;
-  email: string;
-  password: string;
-  CIN: number;
-  nationality: string;
-  phoneNumber: string;
-  role: string;
-  studentNumber: string;
+  })
   major: string;
+  @Prop({ required: true, min: 0, max: 5 })
   level: number;
+  @Prop({ required: true })
   group: number;
+  @Prop({ required: true, enum: ['engineer', 'technician'] })
   diploma: string;
+  @Prop()
   birthDate: Date;
+  @Prop()
   birthPlace: string;
+  @Prop()
   photo: string;
+  @Prop()
   CV: string;
+  @Prop()
   active: boolean;
 }
+
+export const StudentSchema = SchemaFactory.createForClass(Student);

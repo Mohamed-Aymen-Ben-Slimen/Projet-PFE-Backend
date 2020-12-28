@@ -13,7 +13,7 @@ export class MicrosoftStrategy extends PassportStrategy(Strategy, 'microsoft') {
         scope: ['user.read', 'openid', 'profile'],
       },
       function (accessToken, refreshToken, profile, done) {
-        return done(null, profile);
+        return done(null, { accessToken });
       },
     );
   }

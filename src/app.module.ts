@@ -6,6 +6,11 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { StudentsModule } from './students/students.module';
 import { ProfessorsModule } from './professors/professors.module';
+import { MajorModule } from './major/major.module';
+import { ClassModule } from './class/class.module';
+import { DepartmentModule } from './department/department.module';
+import { YearModule } from './Year/year.module';
+import { SessionModule } from './session/session.module';
 
 @Module({
   imports: [
@@ -16,6 +21,11 @@ import { ProfessorsModule } from './professors/professors.module';
     AuthModule,
     StudentsModule,
     ProfessorsModule,
+    MajorModule,
+    ClassModule,
+    DepartmentModule,
+    YearModule,
+    SessionModule
   ],
   controllers: [AppController],
   providers: [AppService],

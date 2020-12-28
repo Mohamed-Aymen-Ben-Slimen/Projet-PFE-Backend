@@ -6,6 +6,7 @@ export type StudentDocument = Student & Document;
 
 @Schema()
 export class Student extends User {
+  
   @Prop({ required: true })
   studentNumber: string;
 
@@ -15,24 +16,24 @@ export class Student extends User {
   })
   major: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, min: 0, max: 5 })
   level: number;
-
-  @Prop()
+  
+  @Prop({ required: true })
   group: number;
-
+  
   @Prop({ required: true, enum: ['engineer', 'technician'] })
   diploma: string;
-
+  
   @Prop()
   birthDate: Date;
-
+  
   @Prop()
   birthPlace: string;
-
+  
   @Prop()
   photo: string;
-
+  
   @Prop()
   CV: string;
 

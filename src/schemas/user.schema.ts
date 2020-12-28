@@ -1,34 +1,16 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-
-// export const UserSchema = new Schema(
-//   {
-//     firstName: { type: String, required: true },
-//     lastName: { type: String, required: true },
-//     username: Number,
-//     email: { type: String, required: true },
-//     password: { type: String, required: true },
-//     CIN: { type: Number, required: true },
-//     nationality: String,
-//     phoneNumber: String,
-//     role: {
-//       type: String,
-//       required: true,
-//       enum: ['ADMIN', 'STUDENT', 'PROFESSOR'],
-//     },
-//   },
-//   { collection: 'users', discriminatorKey: 'role' },
-// );
+export type UserDocument = User & Document;
 
 @Schema()
 export class User {
   @Prop({ required: true })
-  firstname: string;
-
-  @Prop()
-  lastname: string;
-
-  @Prop()
+  firstName: string;
+  
+  @Prop({ required: true })
+  lastName: string;
+  
+  @Prop({ required: true})
   username: string;
 
   @Prop({ required: true })

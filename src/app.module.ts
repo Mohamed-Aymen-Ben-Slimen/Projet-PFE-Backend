@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { StudentsModule } from './students/students.module';
+import { ProfessorsModule } from './professors/professors.module';
 import { MajorModule } from './major/major.module';
 import { ClassModule } from './class/class.module';
 import { DepartmentModule } from './department/department.module';
@@ -19,6 +20,7 @@ import { SessionModule } from './session/session.module';
     MongooseModule.forRoot(process.env.MONGO_URL),
     AuthModule,
     StudentsModule,
+    ProfessorsModule,
     MajorModule,
     ClassModule,
     DepartmentModule,

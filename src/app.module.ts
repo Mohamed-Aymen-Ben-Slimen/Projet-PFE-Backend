@@ -11,6 +11,7 @@ import { ClassModule } from './class/class.module';
 import { DepartmentModule } from './department/department.module';
 import { YearModule } from './Year/year.module';
 import { SessionModule } from './session/session.module';
+import { PfeModule } from './pfe/pfe.module';
 
 @Module({
   imports: [
@@ -25,7 +26,8 @@ import { SessionModule } from './session/session.module';
     ClassModule,
     DepartmentModule,
     YearModule,
-    SessionModule
+    SessionModule,
+    PfeModule
   ],
   controllers: [AppController],
   providers: [AppService],

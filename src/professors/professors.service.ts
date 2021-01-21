@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { Professor, ProfessorDocument } from './professor.model';
 import { CreateProfessorDto } from './DTO-Professor/create-professor.dto';
 import { UpdateProfessorDto } from './DTO-Professor/update-professor.dto';
+import { Student } from '../students/student.model';
 
 
 @Injectable()
@@ -24,6 +25,10 @@ export class ProfessorsService {
 
   async findById(id): Promise<Professor> {
     return await this.professorModel.findById(id).exec();
+  }
+
+  async findByEmail(email): Promise<Professor> {
+    return await this.professorModel.findOne({ email }).exec();
   }
 
   async update(id, updateProfDto: UpdateProfessorDto): Promise<any> {

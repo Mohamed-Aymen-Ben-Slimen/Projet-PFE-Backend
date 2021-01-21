@@ -15,6 +15,7 @@ import { PfeModule } from './pfe/pfe.module';
 import { EntrepriseController } from './entreprise/entreprise.controller';
 import { EntrepriseModule } from './entreprise/entreprise.module';
 import { SuperviserModule } from './superviser/superviser.module';
+import { ReportModule } from './report/report.module';
 
 @Module({
   imports: [
@@ -32,7 +33,8 @@ import { SuperviserModule } from './superviser/superviser.module';
     SessionModule,
     PfeModule,
     EntrepriseModule,
-    SuperviserModule
+    SuperviserModule,
+    ReportModule
   ],
   controllers: [AppController, EntrepriseController],
   providers: [AppService],

@@ -12,6 +12,8 @@ import { DepartmentModule } from './department/department.module';
 import { YearModule } from './Year/year.module';
 import { SessionModule } from './session/session.module';
 import { PfeModule } from './pfe/pfe.module';
+import { EntrepriseController } from './entreprise/entreprise.controller';
+import { EntrepriseModule } from './entreprise/entreprise.module';
 
 @Module({
   imports: [
@@ -27,9 +29,10 @@ import { PfeModule } from './pfe/pfe.module';
     DepartmentModule,
     YearModule,
     SessionModule,
-    PfeModule
+    PfeModule,
+    EntrepriseModule
   ],
-  controllers: [AppController],
+  controllers: [AppController, EntrepriseController],
   providers: [AppService],
 })
 export class AppModule {}

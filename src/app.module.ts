@@ -12,6 +12,7 @@ import { DepartmentModule } from './department/department.module';
 import { YearModule } from './Year/year.module';
 import { SessionModule } from './session/session.module';
 import { PfeModule } from './pfe/pfe.module';
+import { SoutenanceModule } from './soutenance/soutenance.module';
 
 @Module({
   imports: [
@@ -27,7 +28,8 @@ import { PfeModule } from './pfe/pfe.module';
     DepartmentModule,
     YearModule,
     SessionModule,
-    PfeModule
+    PfeModule,
+    SoutenanceModule
   ],
   controllers: [AppController],
   providers: [AppService],

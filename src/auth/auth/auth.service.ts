@@ -21,8 +21,7 @@ export class AuthService {
   constructor(
     private readonly studentService: StudentsService,
     private readonly professorService: ProfessorsService,
-  ) {
-  }
+  ) {}
 
   async validateUser(
     email: string,

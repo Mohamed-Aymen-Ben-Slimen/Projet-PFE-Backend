@@ -43,6 +43,9 @@ export class AuthController {
   @Get('refresh')
   refresh(@Req() req) {
     const { accessToken, refreshToken } = req.body;
-    return this.authService.compareAccessAndRefreshToken(accessToken, refreshToken);
+    return this.authService.compareAccessAndRefreshToken(
+      accessToken,
+      refreshToken,
+    );
   }
 }

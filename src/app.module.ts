@@ -13,6 +13,10 @@ import { YearModule } from './Year/year.module';
 import { SessionModule } from './session/session.module';
 import { PfeModule } from './pfe/pfe.module';
 import { SoutenanceModule } from './soutenance/soutenance.module';
+import { EntrepriseController } from './entreprise/entreprise.controller';
+import { EntrepriseModule } from './entreprise/entreprise.module';
+import { SuperviserModule } from './superviser/superviser.module';
+import { ReportModule } from './report/report.module';
 
 @Module({
   imports: [
@@ -29,7 +33,13 @@ import { SoutenanceModule } from './soutenance/soutenance.module';
     YearModule,
     SessionModule,
     PfeModule,
+<<<<<<< HEAD
     SoutenanceModule
+=======
+    EntrepriseModule,
+    SuperviserModule,
+    ReportModule
+>>>>>>> 3606f2514e93867567efac6911a146e1752c8bc7
   ],
   controllers: [AppController],
   providers: [AppService],

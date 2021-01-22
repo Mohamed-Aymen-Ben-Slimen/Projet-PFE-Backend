@@ -1,7 +1,11 @@
 import {Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import {SubjectType} from './enums/subject-type.enum';
 import {SubjectStatus} from './enums/subject-status.enum';
-import { Document } from 'mongoose';
+import { Document, Schema as MongooseSchema } from 'mongoose';
+import { Report } from '../report/model/report.model';
+import { Superviser } from '../superviser/model/superviser.model';
+import { Entreprise } from '../entreprise/model/entreprise.model';
+
 
 export type SubjectPfeDocument = SubjectPfe & Document;
 
@@ -32,6 +36,17 @@ export class SubjectPfe {
 
   @Prop({ required: true})
   status: SubjectStatus;
+
+  @Prop({ type: MongooseSchema.Types.ObjectId , ref: 'Report' })
+  report:  Report;
+
+  @Prop({ type: MongooseSchema.Types.ObjectId , ref: 'Superviser' })
+  superviser:  Superviser;
+
+  @Prop({ type: MongooseSchema.Types.ObjectId , ref: 'Entreprise' })
+  entreprise:  Entreprise;
+
+
 }
 
 export const SubjectPfeSchema = SchemaFactory.createForClass(SubjectPfe);

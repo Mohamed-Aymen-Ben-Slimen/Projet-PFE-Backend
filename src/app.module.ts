@@ -33,13 +33,10 @@ import { ReportModule } from './report/report.module';
     YearModule,
     SessionModule,
     PfeModule,
-<<<<<<< HEAD
-    SoutenanceModule
-=======
+    SoutenanceModule,
     EntrepriseModule,
     SuperviserModule,
-    ReportModule
->>>>>>> 3606f2514e93867567efac6911a146e1752c8bc7
+    ReportModule,
   ],
   controllers: [AppController],
   providers: [AppService],

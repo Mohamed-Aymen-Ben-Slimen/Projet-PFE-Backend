@@ -15,7 +15,7 @@ export class AuthController {
   @UseGuards(AuthGuard('microsoft'))
   outlookAuthRedirect(@Req() req, @Res() res) {
     return res.redirect(
-      `http://localhost:4200/auth/success?token=${req.user.accessToken}`,
+      `http://localhost:4200/signin/success?token=${req.user.accessToken}`,
     );
   }
 }

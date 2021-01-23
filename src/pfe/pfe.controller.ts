@@ -5,15 +5,21 @@ import { SubjectStatus } from './enums/subject-status.enum';
 import { CreatePfeDto } from './dtos/createPfeDto';
 import { UpdatePfeDto } from './dtos/updatePfeDto';
 import { UpdateStatusPfeDto } from './dtos/updateStatusPfeDto';
+import { Query } from '@nestjs/common/decorators/http/route-params.decorator';
 
 @Controller('pfe')
 export class PfeController {
   constructor(private readonly pfeService: PfeService) {}
 
 
+
   @Get()
-  async findAll(@Param('status') status : SubjectStatus): Promise<SubjectPfe[]> {
-    return this.pfeService.findAll(status);
+  async findWithStatus(@Query('status') status: SubjectStatus): Promise<SubjectPfe[]> {
+    if (!status) {
+      return this.pfeService.findAll();
+    } else {
+      return this.pfeService.findWithStatus(status);
+    }
   }
 
   @Get('/:id')

@@ -21,7 +21,11 @@ export class PfeService {
     return createdPfe.save();
   }
 
-  async findAll(status : SubjectStatus): Promise<SubjectPfe[]> {
+  async findAll(): Promise<SubjectPfe[]> {
+    return this.pfeModel.find().exec();
+  }
+
+  async findWithStatus(status : SubjectStatus): Promise<SubjectPfe[]> {
     return this.pfeModel.find({status: status}).exec();
   }
 

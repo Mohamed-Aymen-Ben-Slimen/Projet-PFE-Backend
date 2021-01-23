@@ -11,6 +11,7 @@ import { ClassModule } from './class/class.module';
 import { DepartmentModule } from './department/department.module';
 import { YearModule } from './Year/year.module';
 import { SessionModule } from './session/session.module';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { SessionModule } from './session/session.module';
     AuthModule,
     StudentsModule,
     ProfessorsModule,
+    AdminModule,
     MajorModule,
     ClassModule,
     DepartmentModule,

@@ -1,10 +1,11 @@
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-microsoft';
 import { Injectable } from '@nestjs/common';
+import { AuthService, Provider } from './auth/auth.service';
 
 @Injectable()
 export class MicrosoftStrategy extends PassportStrategy(Strategy, 'microsoft') {
-  constructor() {
+  constructor(private readonly authService: AuthService) {
     super(
       {
         clientID: 'a328841a-c099-41ba-9c1b-fb97786d8463',
@@ -12,8 +13,21 @@ export class MicrosoftStrategy extends PassportStrategy(Strategy, 'microsoft') {
         callbackURL: 'http://localhost:3000/auth/microsoft/callback',
         scope: ['user.read', 'openid', 'profile'],
       },
-      function (accessToken, refreshToken, profile, done) {
-        return done(null, { accessToken });
+      async function (accessToken, refreshToken, profile, done) {
+        try {
+          const jwt: string = await this.authService.validateOAuthLogin(
+            profile.id,
+            Provider.MICROSOFT,
+          );
+          const user = {
+            token: jwt,
+          };
+
+          done(null, user);
+        } catch (err) {
+          console.log(err);
+          done(err, false);
+        }
       },
     );
   }

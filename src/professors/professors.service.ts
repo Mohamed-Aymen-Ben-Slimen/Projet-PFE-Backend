@@ -14,6 +14,7 @@ export class ProfessorsService {
 
   async create(createProfessorDto: CreateProfessorDto): Promise<Professor> {
     console.log(new this.professorModel());
+
     const createdProfessor = new this.professorModel(createProfessorDto);
     console.log(createProfessorDto);
     return createdProfessor.save();

@@ -1,3 +1,4 @@
+import { DepartmentEnum } from '../../department/department.enum';
 
 export class UpdateProfessorDto {
   firstname: string;
@@ -7,6 +8,6 @@ export class UpdateProfessorDto {
   phoneNumber: string;
   role: string;
   professorId: string;
-  department: string;
+  department: DepartmentEnum;
   title: string;
 }

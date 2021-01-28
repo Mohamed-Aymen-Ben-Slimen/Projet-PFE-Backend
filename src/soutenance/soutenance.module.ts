@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
-import { SoutenanceService } from './soutenance.service';
-import { SoutenanceContoller } from './soutenance.contoller';
+
 import { MongooseModule } from '@nestjs/mongoose';
+import { SoutenanceController } from './soutenance.controller';
+import { SoutenanceService } from './soutenance.service';
 import { Soutenance, SoutenanceSchema } from './soutenance.model';
 
 @Module({

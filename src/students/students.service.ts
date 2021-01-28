@@ -14,9 +14,9 @@ export class StudentsService {
 
   async create(createStudentDto: CreateStudentDto): Promise<Student> {
     console.log(new this.studentModel());
-    const createdProfessor = new this.studentModel(createStudentDto);
+    const createdStudent = new this.studentModel(createStudentDto);
     console.log(createStudentDto);
-    return createdProfessor.save();
+    return createdStudent.save();
   }
 
   async findAll(): Promise<Student[]> {

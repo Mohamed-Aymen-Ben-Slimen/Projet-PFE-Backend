@@ -1,6 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { SoutenanceService } from './soutenance.service';
 import { Soutenance } from './soutenance.model';
+import { CreateSoutenanceDto } from './dtos/createSoutenanceDto';
+import { UpdateSoutenanceDto } from './dtos/updateSoutenanceDto';
 
 @Controller('soutenances')
 export class SoutenanceContoller {
@@ -18,13 +20,13 @@ export class SoutenanceContoller {
   }
 
   @Post('')
-  async add(@Body() newClass: Soutenance) {
+  async add(@Body() newClass: CreateSoutenanceDto) {
     await this.soutenanceService.create(newClass);
     return newClass;
   }
 
   @Post('/all')
-  async addAll(@Body() newClasses: Soutenance[]) {
+  async addAll(@Body() newClasses: CreateSoutenanceDto[]) {
     newClasses.map(async (item) => {
       await this.soutenanceService.create(item);
     });
@@ -33,7 +35,7 @@ export class SoutenanceContoller {
 
   @Patch('/:id')
   async update(
-    @Body() updatedSoutenance: Soutenance,
+    @Body() updatedSoutenance: UpdateSoutenanceDto,
     @Param('id') id: string,
   ) {
     await this.soutenanceService.update(id, updatedSoutenance);

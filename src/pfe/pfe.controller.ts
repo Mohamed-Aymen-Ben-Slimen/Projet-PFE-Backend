@@ -6,6 +6,7 @@ import { CreatePfeDto } from './dtos/createPfeDto';
 import { UpdatePfeDto } from './dtos/updatePfeDto';
 import { UpdateStatusPfeDto } from './dtos/updateStatusPfeDto';
 import { Query } from '@nestjs/common/decorators/http/route-params.decorator';
+import { UpdateAdministrationNoticeDto } from './dtos/updateAdministrationNoticeDto';
 
 @Controller('pfe')
 export class PfeController {
@@ -61,6 +62,15 @@ export class PfeController {
     @Param('id') id: string,
   ) {
     await this.pfeService.updateStatus(id, updatedPfe);
+    return updatedPfe;
+  }
+
+  @Patch(':id/notice')
+  async UpdateAdministrationNoticePfe(
+    @Body() updatedPfe: UpdateAdministrationNoticeDto,
+    @Param('id') id: string,
+  ) {
+    await this.pfeService.updateAdministrationNotice(id, updatedPfe);
     return updatedPfe;
   }
 }

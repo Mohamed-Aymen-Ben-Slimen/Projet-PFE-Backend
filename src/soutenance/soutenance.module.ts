@@ -12,6 +12,6 @@ import { Soutenance, SoutenanceSchema } from './soutenance.model';
     ]),
   ],
   providers: [SoutenanceService],
-  controllers: [SoutenanceContoller],
+  controllers: [SoutenanceController],
 })
 export class SoutenanceModule {}

@@ -20,7 +20,7 @@ export class SoutenanceService {
   }
 
   async findAll(): Promise<Soutenance[]> {
-    return this.soutenanceModel.find().exec();
+    return this.soutenanceModel.find().populate('subjectPfe').exec();
   }
 
   async findById(id): Promise<Soutenance> {

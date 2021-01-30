@@ -6,7 +6,7 @@ import { CreateSoutenanceDto } from './dtos/createSoutenanceDto';
 
 
 @Controller('soutenances')
-export class SoutenanceContoller {
+export class SoutenanceController {
   constructor(private readonly soutenanceService: SoutenanceService) {
   }
 

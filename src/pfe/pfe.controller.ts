@@ -1,4 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { PfeService } from './pfe.service';
 import { SubjectPfe } from '../pfe/sujet-pfe.model';
 import { SubjectStatus } from './enums/subject-status.enum';
@@ -11,10 +20,10 @@ import { Query } from '@nestjs/common/decorators/http/route-params.decorator';
 export class PfeController {
   constructor(private readonly pfeService: PfeService) {}
 
-
-
   @Get()
-  async findWithStatus(@Query('status') status: SubjectStatus): Promise<SubjectPfe[]> {
+  async findWithStatus(
+    @Query('status') status: SubjectStatus,
+  ): Promise<SubjectPfe[]> {
     if (!status) {
       return this.pfeService.findAll();
     } else {
@@ -25,6 +34,11 @@ export class PfeController {
   @Get('/:id')
   async getPfeById(@Param('id') id: string): Promise<SubjectPfe> {
     return this.pfeService.findById(id);
+  }
+
+  @Get('/student/:id')
+  async getPfeByStudentId(@Param('id') id: string): Promise<SubjectPfe>{
+    return this.pfeService.findByStudentId(id);
   }
 
   @Post('')
@@ -47,10 +61,7 @@ export class PfeController {
   }
 
   @Put(':id')
-  async updatePfe(
-    @Body() updatedPfe: UpdatePfeDto,
-    @Param('id') id: string,
-  ) {
+  async updatePfe(@Body() updatedPfe: UpdatePfeDto, @Param('id') id: string) {
     await this.pfeService.update(id, updatedPfe);
     return updatedPfe;
   }

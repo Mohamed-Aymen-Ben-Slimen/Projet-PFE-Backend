@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
+import { Model, ObjectId } from 'mongoose';
 import { SubjectPfe, SubjectPfeDocument } from './sujet-pfe.model';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreatePfeDto } from './dtos/createPfeDto';
@@ -25,12 +25,16 @@ export class PfeService {
     return this.pfeModel.find().exec();
   }
 
-  async findWithStatus(status : SubjectStatus): Promise<SubjectPfe[]> {
-    return this.pfeModel.find({status: status}).exec();
+  async findWithStatus(status: SubjectStatus): Promise<SubjectPfe[]> {
+    return this.pfeModel.find({ status: status }).exec();
   }
 
   async findById(id): Promise<SubjectPfe> {
     return await this.pfeModel.findById(id).exec();
+  }
+
+  async findByStudentId(id: ObjectId): Promise<SubjectPfe> {
+    return await this.pfeModel.findOne({ 'student.studentNumber': id }).exec();
   }
 
   async update(id, updatePfeDto: UpdatePfeDto): Promise<any> {

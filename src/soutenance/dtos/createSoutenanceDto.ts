@@ -3,7 +3,7 @@ import { CreateProfessorDto } from '../../professors/DTO-Professor/create-profes
 import { CreatePfeDto } from '../../pfe/dtos/createPfeDto';
 
 export class CreateSoutenanceDto {
-  readonly romm: Room;
+  readonly room: Room;
   readonly dateTime: Date;
   readonly subjectPfe: CreatePfeDto;
   readonly jury: CreateProfessorDto[];

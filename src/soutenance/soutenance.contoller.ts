@@ -4,6 +4,7 @@ import { Soutenance } from './soutenance.model';
 import { UpdateSoutenanceDto } from './dtos/updateSoutenanceDto';
 import { CreateSoutenanceDto } from './dtos/createSoutenanceDto';
 
+
 @Controller('soutenances')
 export class SoutenanceContoller {
   constructor(private readonly soutenanceService: SoutenanceService) {

@@ -12,6 +12,6 @@ import { SoutenanceContoller } from './soutenance.contoller';
     ]),
   ],
   providers: [SoutenanceService],
-  controllers: [SoutenanceContoller],
+  controllers: [SoutenanceController],
 })
 export class SoutenanceModule {}

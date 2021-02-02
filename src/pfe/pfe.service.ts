@@ -6,6 +6,7 @@ import { CreatePfeDto } from './dtos/createPfeDto';
 import { UpdatePfeDto } from './dtos/updatePfeDto';
 import { UpdateStatusPfeDto } from './dtos/updateStatusPfeDto';
 import { SubjectStatus } from './enums/subject-status.enum';
+import { UpdateAdministrationNoticeDto } from './dtos/updateAdministrationNoticeDto';
 
 @Injectable()
 export class PfeService {
@@ -45,6 +46,12 @@ export class PfeService {
 
   async updateStatus(id, updateStatusPfeDto: UpdateStatusPfeDto): Promise<any> {
     return await this.pfeModel.findByIdAndUpdate(id, updateStatusPfeDto, {
+      new: true,
+    });
+  }
+
+  async updateAdministrationNotice(id, updateAdministrationNoticeDto: UpdateAdministrationNoticeDto): Promise<any> {
+    return await this.pfeModel.findByIdAndUpdate(id, updateAdministrationNoticeDto, {
       new: true,
     });
   }

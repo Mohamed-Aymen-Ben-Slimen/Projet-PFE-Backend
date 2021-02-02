@@ -5,7 +5,8 @@ import { Document, Schema as MongooseSchema } from 'mongoose';
 import { Report } from '../report/model/report.model';
 import { Superviser } from '../superviser/model/superviser.model';
 import { Entreprise } from '../entreprise/model/entreprise.model';
-import { Student } from '../students/student.model';
+import { Student } from 'src/students/student.model';
+
 
 export type SubjectPfeDocument = SubjectPfe & Document;
 
@@ -36,14 +37,17 @@ export class SubjectPfe {
   @Prop({ required: true })
   status: SubjectStatus;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Student' })
+  @Prop()
+  administrationNotice: string;
+
+  @Prop({ type: MongooseSchema.Types.ObjectId , ref: 'Report' })
+  report:  Report;
+
+  @Prop({ type: MongooseSchema.Types.ObjectId , ref: 'Student' })
   student: Student;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Report' })
-  report: Report;
-
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Superviser' })
-  superviser: Superviser;
+  @Prop({ type: MongooseSchema.Types.ObjectId , ref: 'Superviser' })
+  superviser:  Superviser;
 
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Entreprise' })
   entreprise: Entreprise;

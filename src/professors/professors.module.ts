@@ -8,6 +8,7 @@ import { ProfessorsService } from './professors.service';
     MongooseModule.forFeature([{ name: Professor.name, schema: ProfessorSchema }]),
   ],
   controllers: [ProfessorsController],
-  providers: [ProfessorsService]
+  providers: [ProfessorsService],
+  exports: [ProfessorsService],
 })
 export class ProfessorsModule {}

@@ -27,6 +27,10 @@ export class StudentsService {
     return await this.studentModel.findById(id).exec();
   }
 
+  async findByEmail(email): Promise<Student> {
+    return await this.studentModel.findOne({ email }).exec();
+  }
+
   async update(id, updateStudentDto: UpdateStudentDto): Promise<any> {
     return await this.studentModel.findByIdAndUpdate(id, updateStudentDto, {
       new: true,

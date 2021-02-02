@@ -1,4 +1,4 @@
-import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 
@@ -6,10 +6,11 @@ import { AuthService } from './auth.service';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Get('local')
+  @Post('local')
   @UseGuards(AuthGuard('local'))
   async localAuth(@Req() req) {
     const { user } = req;
+    console.log(req);
     const jwt = {
       accessToken: await this.authService.generateLocalToken(user),
       refreshToken: await this.authService.generateRefreshToken(user),
@@ -28,7 +29,7 @@ export class AuthController {
   @UseGuards(AuthGuard('microsoft'))
   outlookAuthRedirect(@Req() req, @Res() res) {
     return res.redirect(
-      `http://localhost:4200/auth/success?token=${req.user.token}`,
+      `http://localhost:4200/signin/success?token=${req.user.token}`,
     );
   }
 

@@ -16,6 +16,7 @@ import { UpdatePfeDto } from './dtos/updatePfeDto';
 import { UpdateStatusPfeDto } from './dtos/updateStatusPfeDto';
 import { Query } from '@nestjs/common/decorators/http/route-params.decorator';
 import { UpdateAdministrationNoticeDto } from './dtos/updateAdministrationNoticeDto';
+import { ObjectId } from 'mongoose';
 
 @Controller('pfe')
 export class PfeController {
@@ -38,7 +39,7 @@ export class PfeController {
   }
 
   @Get('/student/:id')
-  async getPfeByStudentId(@Param('id') id: string): Promise<SubjectPfe>{
+  async getPfeByStudentId(@Param('id') id: ObjectId): Promise<SubjectPfe>{
     return this.pfeService.findByStudentId(id);
   }
 

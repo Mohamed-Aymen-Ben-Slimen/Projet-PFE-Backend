@@ -3,6 +3,7 @@ import { CreateProfessorDto } from './DTO-Professor/create-professor.dto';
 import { UpdateProfessorDto } from './DTO-Professor/update-professor.dto';
 import { ProfessorsService } from './professors.service';
 import { Professor } from './professor.model';
+import { DepartmentEnum } from 'src/department/department.enum';
 
 @Controller('professors')
 export class ProfessorsController {
@@ -20,6 +21,14 @@ export class ProfessorsController {
   ): Promise<Professor> {
     console.log("Get One Prof");
     return this.professorService.findById(id);
+  }
+
+  @Get('/department/:department')
+  async getProfessorsByDepartment(
+    @Param('department') department: DepartmentEnum,
+  ): Promise<Professor[]> {
+    console.log("Get One Prof");
+    return this.professorService.findByDepartment(department);
   }
 
   @Post('')

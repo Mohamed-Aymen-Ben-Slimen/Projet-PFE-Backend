@@ -6,6 +6,7 @@ import { Professor, ProfessorDocument } from './professor.model';
 import { CreateProfessorDto } from './DTO-Professor/create-professor.dto';
 import { UpdateProfessorDto } from './DTO-Professor/update-professor.dto';
 import { Student } from '../students/student.model';
+import { DepartmentEnum } from 'src/department/department.enum';
 
 
 @Injectable()
@@ -22,6 +23,10 @@ export class ProfessorsService {
 
   async findAll(): Promise<Professor[]> {
     return this.professorModel.find().exec();
+  }
+
+  async findByDepartment(department: DepartmentEnum): Promise<Professor[]> {
+    return this.professorModel.find({ department }).exec();
   }
 
   async findById(id): Promise<Professor> {

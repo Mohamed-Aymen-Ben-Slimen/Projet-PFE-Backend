@@ -68,21 +68,4 @@ export class PfeController {
     return updatedPfe;
   }
 
-  @Patch(':id')
-  async UpdateStatusPfe(
-    @Body() updatedPfe: UpdateStatusPfeDto,
-    @Param('id') id: string,
-  ) {
-    await this.pfeService.updateStatus(id, updatedPfe);
-    return updatedPfe;
-  }
-
-  @Patch(':id/notice')
-  async UpdateAdministrationNoticePfe(
-    @Body() updatedPfe: UpdateAdministrationNoticeDto,
-    @Param('id') id: string,
-  ) {
-    await this.pfeService.updateAdministrationNotice(id, updatedPfe);
-    return updatedPfe;
-  }
 }

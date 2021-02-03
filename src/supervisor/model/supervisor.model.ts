@@ -1,10 +1,10 @@
 import {Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export type SuperviserDocument = Superviser & Document;
+export type SupervisorDocument = Supervisor & Document;
 
 @Schema()
-export class Superviser {
+export class Supervisor {
 
   @Prop({ required: true })
   id: string;
@@ -27,4 +27,4 @@ export class Superviser {
 
 }
 
-export const SuperviserSchema = SchemaFactory.createForClass(Superviser);
+export const SupervisorSchema = SchemaFactory.createForClass(Supervisor);

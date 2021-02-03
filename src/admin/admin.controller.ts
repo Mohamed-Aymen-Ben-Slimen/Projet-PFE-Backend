@@ -1,16 +1,29 @@
-import { Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { Admin } from './admin.model';
 import { Body } from '@nestjs/common';
 import { CreateAdminDto } from './DTO-student/create-admin.dto';
 import { UpdateAdminDto } from './DTO-student/update-admin.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('admin')
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
 
   @Get()
-  async findAll(): Promise<Admin[]> {
+  async findAll(@Req() req): Promise<Admin[]> {
+    if (req.user) {
+      return req.user;
+    }
     return this.adminService.findAll();
   }
 

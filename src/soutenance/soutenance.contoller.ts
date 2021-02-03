@@ -1,14 +1,20 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { SoutenanceService } from './soutenance.service';
 import { Soutenance } from './soutenance.model';
-import { UpdateSoutenanceDto } from './dtos/updateSoutenanceDto';
 import { CreateSoutenanceDto } from './dtos/createSoutenanceDto';
-
+import { UpdateSoutenanceDto } from './dtos/updateSoutenanceDto';
 
 @Controller('soutenances')
-export class SoutenanceController {
-  constructor(private readonly soutenanceService: SoutenanceService) {
-  }
+export class SoutenanceContoller {
+  constructor(private readonly soutenanceService: SoutenanceService) {}
 
   @Get('')
   async findAll(): Promise<Soutenance[]> {
@@ -28,17 +34,14 @@ export class SoutenanceController {
 
   @Post('/all')
   async addAll(@Body() newClasses: CreateSoutenanceDto[]) {
-    newClasses.map(async (item) => {
+    newClasses.map(async (item: CreateSoutenanceDto) => {
       await this.soutenanceService.create(item);
     });
     return newClasses;
   }
 
   @Patch('/:id')
-  async update(
-    @Body() updatedSoutenance: UpdateSoutenanceDto,
-    @Param('id') id: string,
-  ) {
+  async update(@Body() updatedSoutenance: UpdateSoutenanceDto, @Param('id') id: string) {
     await this.soutenanceService.update(id, updatedSoutenance);
     return updatedSoutenance;
   }

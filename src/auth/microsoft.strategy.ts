@@ -15,8 +15,10 @@ export class MicrosoftStrategy extends PassportStrategy(Strategy, 'microsoft') {
       },
       async function (accessToken, refreshToken, profile, done) {
         try {
+          // console.log(profile);
+          const email = profile.emails[0].value;
           const jwt: string = await this.authService.validateOAuthLogin(
-            profile.id,
+            email,
             Provider.MICROSOFT,
           );
           const user = {

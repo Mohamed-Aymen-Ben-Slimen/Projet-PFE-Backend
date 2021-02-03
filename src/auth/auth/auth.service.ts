@@ -100,10 +100,18 @@ export class AuthService {
       // if (!user)
       // user = await this.usersService.registerOAuthUser(thirdPartyId, provider);
 
-      const payload = {
+      /*
+      let payload = {
         id: user['_id'],
         email: user.email,
         role: user.role,
+      };
+       */
+
+      const payload = {
+        id: '12345678',
+        email: 'email',
+        role: 'user',
       };
 
       const jwt = sign(payload, this.JWT_SECRET_KEY, {
@@ -115,10 +123,7 @@ export class AuthService {
     }
   }
 
-  async validateOAuthLogin(
-    thirdPartyId: string,
-    provider: Provider,
-  ): Promise<Buffer> {
+  async validateOAuthLogin(email: string, provider: Provider): Promise<Buffer> {
     try {
       // You can add some registration logic here,
       // to register the user using their thirdPartyId (in this case their googleId)
@@ -127,15 +132,14 @@ export class AuthService {
       // if (!user)
       // user = await this.usersService.registerOAuthUser(thirdPartyId, provider);
 
-      const payload = {
-        thirdPartyId,
-        provider,
-      };
+      const student = await this.studentService.findByEmail(email);
 
-      const jwt = sign(payload, this.JWT_SECRET_KEY, {
-        expiresIn: 3600,
-      });
-      return jwt;
+      if (!student) {
+        const jwt = this.generateLocalToken(student);
+        return jwt;
+      }
+
+      return null;
     } catch (err) {
       throw new InternalServerErrorException('validateOAuthLogin', err.message);
     }
@@ -165,8 +169,11 @@ export class AuthService {
     refreshToken: string,
   ): Promise<any> {
     const accessTokenPayload = verify(accessToken, process.env.JWT_SECRET_KEY);
-    const refreshTokenPayload = verify(refreshToken, process.env.JWT_SECRET_KEY);
-    if (accessTokenPayload.id === refreshTokenPayload.id ) {
+    const refreshTokenPayload = verify(
+      refreshToken,
+      process.env.JWT_SECRET_KEY,
+    );
+    if (accessTokenPayload.id === refreshTokenPayload.id) {
       const newAccessToken = sign(
         {
           id: accessTokenPayload.id,

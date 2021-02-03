@@ -18,6 +18,7 @@ import { EntrepriseModule } from './entreprise/entreprise.module';
 import { SuperviserModule } from './superviser/superviser.module';
 import { ReportModule } from './report/report.module';
 import { AdminModule } from './admin/admin.module';
+import { AppGateway } from './app.gateway';
 
 @Module({
   imports: [
@@ -41,6 +42,6 @@ import { AdminModule } from './admin/admin.module';
     ReportModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AppGateway],
 })
 export class AppModule {}

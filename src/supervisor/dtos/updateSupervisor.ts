@@ -1,5 +1,5 @@
 
-export class UpdateSuperviserDto {
+export class UpdateSupervisorDto {
   readonly firstname: string;
   readonly lastname: string;
   readonly email: string;

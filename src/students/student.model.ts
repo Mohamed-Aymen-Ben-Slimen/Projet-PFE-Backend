@@ -18,7 +18,7 @@ export class Student extends User {
   @Prop({ required: true, min: 0, max: 5 })
   level: number;
 
-  @Prop({ required: true, enum: ['engineer', 'technician'] })
+  @Prop({ required: true, enum: ['ingénieur', 'technicien'] })
   diploma: string;
 
   @Prop()

@@ -13,4 +13,5 @@ export class CreatePfeDto {
   readonly student: Student;
   readonly entreprise: Entreprise;
   readonly supervisor: Supervisor;
+  readonly professorRequested: boolean;
 }

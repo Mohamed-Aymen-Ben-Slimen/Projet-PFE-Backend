@@ -13,11 +13,11 @@ import { YearModule } from './Year/year.module';
 import { SessionModule } from './session/session.module';
 import { PfeModule } from './pfe/pfe.module';
 import { SoutenanceModule } from './soutenance/soutenance.module';
-import { EntrepriseController } from './entreprise/entreprise.controller';
 import { EntrepriseModule } from './entreprise/entreprise.module';
 import { SupervisorModule } from './supervisor/supervisor.module';
 import { ReportModule } from './report/report.module';
 import { AdminModule } from './admin/admin.module';
+import { MailerService } from './shared/services/mailer/mailer.service';
 
 @Module({
   imports: [

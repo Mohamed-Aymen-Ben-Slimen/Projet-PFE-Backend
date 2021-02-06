@@ -4,7 +4,6 @@ import {
   Delete,
   Get,
   Param,
-  Patch,
   Post,
   Put,
 } from '@nestjs/common';
@@ -13,9 +12,7 @@ import { SubjectPfe } from '../pfe/sujet-pfe.model';
 import { SubjectStatus } from './enums/subject-status.enum';
 import { CreatePfeDto } from './dtos/createPfeDto';
 import { UpdatePfeDto } from './dtos/updatePfeDto';
-import { UpdateStatusPfeDto } from './dtos/updateStatusPfeDto';
 import { Query } from '@nestjs/common/decorators/http/route-params.decorator';
-import { UpdateAdministrationNoticeDto } from './dtos/updateAdministrationNoticeDto';
 import { ObjectId } from 'mongoose';
 
 @Controller('pfe')
@@ -39,12 +36,17 @@ export class PfeController {
   }
 
   @Get('/student/:id')
-  async getPfeByStudentId(@Param('id') id: ObjectId): Promise<SubjectPfe>{
+  async getPfeByStudentId(@Param('id') id: ObjectId): Promise<SubjectPfe> {
     return this.pfeService.findByStudentId(id);
   }
 
+  @Get('/requested/professor/:id')
+  async getPfeByRequestedProfessorId(@Param('id') id: ObjectId): Promise<SubjectPfe[]> {
+    return this.pfeService.findByRequestedProfessorId(id);
+  }
+
   @Post('')
-  async postPfe (@Body() newPfe: CreatePfeDto) {
+  async postPfe(@Body() newPfe: CreatePfeDto) {
     await this.pfeService.create(newPfe);
     return newPfe;
   }
@@ -67,5 +69,4 @@ export class PfeController {
     await this.pfeService.update(id, updatedPfe);
     return updatedPfe;
   }
-
 }

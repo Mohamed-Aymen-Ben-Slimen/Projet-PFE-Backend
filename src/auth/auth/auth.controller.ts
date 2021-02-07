@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Req, Res, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 
@@ -17,8 +17,9 @@ export class AuthController {
         user: user,
       };
       return jwt;
+    } else {
+      throw new UnauthorizedException();
     }
-    return { error: 'You are not allowed to signin' };
   }
 
   @Post('local/admin')
@@ -32,8 +33,9 @@ export class AuthController {
         user: user,
       };
       return jwt;
+    } else {
+      throw new UnauthorizedException();
     }
-    return { error: 'You are not allowed to signin' };
   }
 
   @Get('microsoft')

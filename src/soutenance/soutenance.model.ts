@@ -10,9 +10,6 @@ export type SoutenanceDocument = Soutenance & Document;
 
 @Schema()
 export class Soutenance {
-  
-  @Prop({ required: true })
-  id: string;
 
   @Prop({ required: true, enum: [Room['2B6-2'], Room['2B6-3'], Room['2B6-4']] })
   room: string;

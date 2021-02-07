@@ -13,9 +13,7 @@ export class SoutenanceService {
   ) {}
 
   async create(createPfeDto: CreateSoutenanceDto): Promise<Soutenance> {
-    console.log(new this.soutenanceModel());
     const createdPfe = new this.soutenanceModel(createPfeDto);
-    console.log(createPfeDto);
     return createdPfe.save();
   }
 

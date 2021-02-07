@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Req, Res, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 
@@ -10,13 +10,32 @@ export class AuthController {
   @UseGuards(AuthGuard('local'))
   async localAuth(@Req() req) {
     const { user } = req;
-    console.log(req);
-    const jwt = {
-      accessToken: await this.authService.generateLocalToken(user),
-      refreshToken: await this.authService.generateRefreshToken(user),
-      user: user,
-    };
-    return jwt;
+    if (user.role === 'STUDENT' || user.role === 'PROFESSOR') {
+      const jwt = {
+        accessToken: await this.authService.generateLocalToken(user),
+        refreshToken: await this.authService.generateRefreshToken(user),
+        user: user,
+      };
+      return jwt;
+    } else {
+      throw new UnauthorizedException();
+    }
+  }
+
+  @Post('local/admin')
+  @UseGuards(AuthGuard('local'))
+  async localAuthAdmin(@Req() req) {
+    const { user } = req;
+    if (user.role === 'ADMIN') {
+      const jwt = {
+        accessToken: await this.authService.generateLocalToken(user),
+        refreshToken: await this.authService.generateRefreshToken(user),
+        user: user,
+      };
+      return jwt;
+    } else {
+      throw new UnauthorizedException();
+    }
   }
 
   @Get('microsoft')

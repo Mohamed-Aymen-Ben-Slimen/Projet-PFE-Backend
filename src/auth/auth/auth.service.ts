@@ -9,6 +9,8 @@ import { Student } from '../../students/student.model';
 import { Professor } from '../../professors/professor.model';
 import { StudentsService } from '../../students/students.service';
 import { ProfessorsService } from '../../professors/professors.service';
+import { Admin } from '../../admin/admin.model';
+import { AdminService } from '../../admin/admin.service';
 
 export enum Provider {
   MICROSOFT = 'microsoft',
@@ -21,12 +23,13 @@ export class AuthService {
   constructor(
     private readonly studentService: StudentsService,
     private readonly professorService: ProfessorsService,
+    private readonly adminService: AdminService,
   ) {}
 
   async validateUser(
     email: string,
     password: string,
-  ): Promise<Student | Professor> {
+  ): Promise<Student | Professor | Admin> {
     try {
       const student: Student = await this.studentService.findByEmail(email);
       if (student) {
@@ -37,6 +40,10 @@ export class AuthService {
       );
       if (professor) {
         if (this.verifPassword(professor, password)) return professor;
+      }
+      const admin = await this.adminService.findByEmail(email);
+      if (admin) {
+        if (this.verifPassword(admin, password)) return admin;
       }
       throw new HttpException(
         {
@@ -56,7 +63,7 @@ export class AuthService {
     }
   }
 
-  async validateUserById(userId: string): Promise<Student | Professor> {
+  async validateUserById(userId: string): Promise<Student | Professor | Admin> {
     try {
       const student: Student = await this.studentService.findById(userId);
       if (student) {
@@ -64,6 +71,10 @@ export class AuthService {
       }
       const professor: Professor = await this.professorService.findById(userId);
       if (professor) {
+        return professor;
+      }
+      const admin: Admin = await this.adminService.findById(userId);
+      if (admin) {
         return professor;
       }
       throw new HttpException(
@@ -83,6 +94,7 @@ export class AuthService {
       );
     }
   }
+
 
   verifPassword(user: any, password: string): boolean {
     if (user.password === password) {
@@ -165,8 +177,11 @@ export class AuthService {
     refreshToken: string,
   ): Promise<any> {
     const accessTokenPayload = verify(accessToken, process.env.JWT_SECRET_KEY);
-    const refreshTokenPayload = verify(refreshToken, process.env.JWT_SECRET_KEY);
-    if (accessTokenPayload.id === refreshTokenPayload.id ) {
+    const refreshTokenPayload = verify(
+      refreshToken,
+      process.env.JWT_SECRET_KEY,
+    );
+    if (accessTokenPayload.id === refreshTokenPayload.id) {
       const newAccessToken = sign(
         {
           id: accessTokenPayload.id,

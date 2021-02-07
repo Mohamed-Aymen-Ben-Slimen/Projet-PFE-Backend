@@ -6,11 +6,13 @@ import { AuthService } from './auth/auth.service';
 import { ProfessorsModule } from '../professors/professors.module';
 import { StudentsModule } from '../students/students.module';
 import { LocalStrategy } from './local.strategy';
+import { AdminModule } from '../admin/admin.module';
 
 @Module({
   imports: [
     ProfessorsModule,
-    StudentsModule],
+    StudentsModule,
+    AdminModule],
   providers: [
     MicrosoftStrategy,
     JwtStrategy,

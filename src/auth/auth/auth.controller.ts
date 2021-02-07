@@ -10,13 +10,30 @@ export class AuthController {
   @UseGuards(AuthGuard('local'))
   async localAuth(@Req() req) {
     const { user } = req;
-    console.log(req);
-    const jwt = {
-      accessToken: await this.authService.generateLocalToken(user),
-      refreshToken: await this.authService.generateRefreshToken(user),
-      user: user,
-    };
-    return jwt;
+    if (user.role === 'STUDENT' || user.role === 'PROFESSOR') {
+      const jwt = {
+        accessToken: await this.authService.generateLocalToken(user),
+        refreshToken: await this.authService.generateRefreshToken(user),
+        user: user,
+      };
+      return jwt;
+    }
+    return { error: 'You are not allowed to signin' };
+  }
+
+  @Post('local/admin')
+  @UseGuards(AuthGuard('local'))
+  async localAuthAdmin(@Req() req) {
+    const { user } = req;
+    if (user.role === 'ADMIN') {
+      const jwt = {
+        accessToken: await this.authService.generateLocalToken(user),
+        refreshToken: await this.authService.generateRefreshToken(user),
+        user: user,
+      };
+      return jwt;
+    }
+    return { error: 'You are not allowed to signin' };
   }
 
   @Get('microsoft')

@@ -40,6 +40,11 @@ export class PfeController {
     return this.pfeService.findByStudentId(id);
   }
 
+  @Get('/professor/:id')
+  async getPfeByProfessorId(@Param('id') id: ObjectId): Promise<SubjectPfe[]> {
+    return this.pfeService.findByProfessorId(id);
+  }
+
   @Get('/requested/professor/:id')
   async getPfeByRequestedProfessorId(@Param('id') id: ObjectId): Promise<SubjectPfe[]> {
     return this.pfeService.findByRequestedProfessorId(id);

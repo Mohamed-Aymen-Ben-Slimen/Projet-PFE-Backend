@@ -53,6 +53,14 @@ export class PfeService {
       .exec();
   }
 
+  async findByProfessorId(id: ObjectId): Promise<SubjectPfe[]> {
+    const requestedProfessor = await this.professorsService.findById(id);
+    return await this.pfeModel
+      .find({ professorRequested: false, professor: requestedProfessor })
+      .populate(['student', 'entreprise', 'supervisor', 'professor'])
+      .exec();
+  }
+
   async findByRequestedProfessorId(id: ObjectId): Promise<SubjectPfe[]> {
     const requestedProfessor = await this.professorsService.findById(id);
     return await this.pfeModel

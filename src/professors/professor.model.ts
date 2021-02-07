@@ -10,10 +10,18 @@ export class Professor extends User {
   @Prop({ required: true })
   professorId: string;
 
-  @Prop({ required: true , enum: [DepartmentEnum.CB, DepartmentEnum.MI, DepartmentEnum.PI, DepartmentEnum.SSLF] })
+  @Prop({
+    required: true,
+    enum: [
+      DepartmentEnum.CB,
+      DepartmentEnum.MI,
+      DepartmentEnum.PI,
+      DepartmentEnum.SSLF,
+    ],
+  })
   department: DepartmentEnum;
 
-  @Prop({required: true})
+  @Prop({ required: true })
   title: string;
 }
 

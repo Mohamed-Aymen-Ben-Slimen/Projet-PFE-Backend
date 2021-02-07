@@ -8,6 +8,9 @@ import { EntrepriseController } from './entreprise.controller';
   imports: [
     MongooseModule.forFeature([{ name: Entreprise.name, schema: EntrepriseSchema }]),
   ],
+  exports: [
+    EntrepriseService
+  ],
   controllers: [EntrepriseController],
   providers: [EntrepriseService]
 })

@@ -10,6 +10,7 @@ export class SessionService {
   }
 
   async create(createSessionDto: CreateSessionDto): Promise<Session> {
+    console.log(createSessionDto)
     const createdSession = new this.sessionModel(createSessionDto);
     return createdSession.save();
   }

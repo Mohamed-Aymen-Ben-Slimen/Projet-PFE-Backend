@@ -7,6 +7,8 @@ import { UpdatePfeDto } from './dtos/updatePfeDto';
 import { SubjectStatus } from './enums/subject-status.enum';
 import { ProfessorsService } from 'src/professors/professors.service';
 import { StudentsService } from 'src/students/students.service';
+import { EntrepriseService } from '../entreprise/entreprise.service';
+import { CreateEntrepriseDto } from '../entreprise/dtos/createEntrepriseDto';
 
 @Injectable()
 export class PfeService {
@@ -15,12 +17,19 @@ export class PfeService {
     private readonly pfeModel: Model<SubjectPfeDocument>,
     private readonly professorsService: ProfessorsService,
     private readonly studentsService: StudentsService,
+    private readonly entrepriseService: EntrepriseService
   ) {}
 
   async create(createPfeDto: CreatePfeDto): Promise<SubjectPfe> {
     console.log(new this.pfeModel());
     const createdPfe = new this.pfeModel(createPfeDto);
     console.log(createPfeDto);
+    let entrepriseDto : CreateEntrepriseDto = new CreateEntrepriseDto();
+    entrepriseDto.name = createPfeDto.entreprise.name;
+    entrepriseDto.field = createPfeDto.entreprise.field;
+    entrepriseDto.country = createPfeDto.entreprise.country;
+    entrepriseDto.website = createPfeDto.entreprise.website;
+    createdPfe.entreprise = await this.entrepriseService.create(entrepriseDto);
     return createdPfe.save();
   }
 

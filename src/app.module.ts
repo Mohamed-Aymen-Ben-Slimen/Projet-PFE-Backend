@@ -17,7 +17,6 @@ import { EntrepriseModule } from './entreprise/entreprise.module';
 import { SupervisorModule } from './supervisor/supervisor.module';
 import { ReportModule } from './report/report.module';
 import { AdminModule } from './admin/admin.module';
-import { MailerService } from './shared/services/mailer/mailer.service';
 
 @Module({
   imports: [

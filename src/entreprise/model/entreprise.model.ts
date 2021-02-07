@@ -6,9 +6,6 @@ export type EntrepriseDocument = Entreprise & Document;
 @Schema()
 export class Entreprise {
 
-  @Prop({ required: true })
-  id: string;
-
   @Prop({
     required: true,
   })

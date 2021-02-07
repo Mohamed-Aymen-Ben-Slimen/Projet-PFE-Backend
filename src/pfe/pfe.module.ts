@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { SubjectPfe, SubjectPfeSchema } from './sujet-pfe.model';
 import { ProfessorsModule } from 'src/professors/professors.module';
 import { StudentsModule } from 'src/students/students.module';
+import { EntrepriseModule } from '../entreprise/entreprise.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { StudentsModule } from 'src/students/students.module';
     ]),
     ProfessorsModule,
     StudentsModule,
+    EntrepriseModule
   ],
   controllers: [PfeController],
   providers: [PfeService],

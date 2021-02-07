@@ -12,7 +12,7 @@ export type SubjectPfeDocument = SubjectPfe & Document;
 
 @Schema()
 export class SubjectPfe {
-  @Prop({ required: true })
+  @Prop()
   subjectNumber: string;
 
   @Prop({

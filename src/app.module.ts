@@ -17,7 +17,7 @@ import { EntrepriseModule } from './entreprise/entreprise.module';
 import { SupervisorModule } from './supervisor/supervisor.module';
 import { ReportModule } from './report/report.module';
 import { AdminModule } from './admin/admin.module';
-import { MailerService } from './shared/services/mailer/mailer.service';
+import { AppGateway } from './app.gateway';
 
 @Module({
   imports: [
@@ -41,6 +41,6 @@ import { MailerService } from './shared/services/mailer/mailer.service';
     ReportModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AppGateway],
 })
 export class AppModule {}

@@ -8,10 +8,12 @@ import { UpdateProfessorDto } from './DTO-Professor/update-professor.dto';
 import { Student } from '../students/student.model';
 import { DepartmentEnum } from 'src/department/department.enum';
 
-
 @Injectable()
 export class ProfessorsService {
-  constructor(@InjectModel(Professor.name) private readonly professorModel : Model<ProfessorDocument>) {}
+  constructor(
+    @InjectModel(Professor.name)
+    private readonly professorModel: Model<ProfessorDocument>,
+  ) {}
 
   async create(createProfessorDto: CreateProfessorDto): Promise<Professor> {
     console.log(new this.professorModel());
@@ -38,7 +40,9 @@ export class ProfessorsService {
   }
 
   async update(id, updateProfDto: UpdateProfessorDto): Promise<any> {
-    return await this.professorModel.findByIdAndUpdate(id, updateProfDto, { new: true });
+    return await this.professorModel.findByIdAndUpdate(id, updateProfDto, {
+      new: true,
+    });
   }
   async delete(id): Promise<any> {
     return await this.professorModel.findByIdAndRemove(id);
